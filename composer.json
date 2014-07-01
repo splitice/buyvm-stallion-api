@@ -1,0 +1,19 @@
+{
+	"keywords" : [
+		"buyvm","stallion"
+	],
+	"autoload" : {
+		"psr-0" : {
+			"Splitice" : "src"
+		}
+	},
+	"name" : "splitice/buyvm-stallion-api",
+	"type" : "library",
+	"license" : "MIT",
+	"require" : {
+		"php" : ">=5.4"
+	},
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    }
+}
