@@ -9,7 +9,7 @@
 namespace Splitice\BuyVM;
 
 
-class ApiException extends \Exception {
+class ApiTransportException extends \Exception {
     public $http_code;
 
     function __construct($http_code){

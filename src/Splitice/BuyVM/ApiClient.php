@@ -19,6 +19,7 @@ class ApiClient implements IApiClient
         curl_setopt($this->ch, CURLOPT_SSL_VERIFYHOST, false);
         curl_setopt($this->ch, CURLOPT_HEADER, 0);
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($this->ch, CURLOPT_HTTPHEADER, array('Expect:'));
     }
     function execute($action, $data){
         $post = array(
@@ -29,7 +30,6 @@ class ApiClient implements IApiClient
         foreach($data as $k=>$v){
             $post[$k] = $v;
         }
-        die(var_dump($post));
 
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, $post);
 
@@ -37,9 +37,16 @@ class ApiClient implements IApiClient
         $code = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
 
         if($code == 200){
-            return $data;
+            preg_match_all('/<(.*?)>([^<]+)<\/\\1>/i', $data, $match);
+            $result = array();
+
+            foreach ($match[1] as $x => $y) {
+                $result[$y] = $match[2][$x];
+            }
+
+            return $result;
         }else{
-            throw new ApiException($code);
+            throw new ApiTransportException($code);
         }
     }
 }
