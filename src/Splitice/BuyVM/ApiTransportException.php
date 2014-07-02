@@ -8,7 +8,11 @@
 
 namespace Splitice\BuyVM;
 
-
+/**
+ * HTTP Transport exception
+ *
+ * @package Splitice\BuyVM
+ */
 class ApiTransportException extends \Exception {
     public $http_code;
 

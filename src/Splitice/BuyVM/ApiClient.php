@@ -15,6 +15,8 @@ class ApiClient implements IApiClient
     function __construct($key, $hash, $url = self::URL){
         $this->key = $key;
         $this->hash = $hash;
+
+        //Setup curl
         $this->ch = curl_init($url);
         curl_setopt($this->ch, CURLOPT_POST, true);
         curl_setopt($this->ch, CURLOPT_TIMEOUT, 30);
@@ -25,7 +27,13 @@ class ApiClient implements IApiClient
         curl_setopt($this->ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($this->ch, CURLOPT_HTTPHEADER, array('Expect:'));
     }
+
+    function __destruct(){
+        curl_close($this->ch);
+    }
+
     function execute($action, $data){
+        //Create & set post data
         $post = array(
             'key' => $this->key,
             'hash' => $this->hash,
@@ -34,12 +42,13 @@ class ApiClient implements IApiClient
         foreach($data as $k=>$v){
             $post[$k] = $v;
         }
-
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, $post);
 
+        //Execute request
         $data = curl_exec($this->ch);
         $code = curl_getinfo($this->ch, CURLINFO_HTTP_CODE);
 
+        //Handle response
         if($code == 200){
             preg_match_all('/<(.*?)>([^<]+)<\/\\1>/i', $data, $match);
             $result = array();

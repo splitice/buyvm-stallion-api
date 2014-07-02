@@ -7,6 +7,11 @@
  */
 namespace Splitice\BuyVM;
 
+/**
+ * An interface for a BuyVM compatible client
+ *
+ * @package Splitice\BuyVM
+ */
 interface IApiClient
 {
     function execute($action, $data);
