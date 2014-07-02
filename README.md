@@ -5,9 +5,7 @@ BuyVM Stallion API (PHP)
 
 This is a PHP5 wrapper to easily integrate  with BuyVM's Stallion control panel API.
 
-Developed for use at http://www.x4b.net
-
-Pull requests, features and patches welcome.
+Developed for use at [www.x4b.net](http://www.x4b.net). Pull requests, features and patches welcome.
 
 ## Requirements
 You need PHP 5.3.2+ compiled with the cURL extension.
