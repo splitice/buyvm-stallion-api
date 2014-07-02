@@ -1,6 +1,8 @@
 BuyVM Stallion API (PHP)
 ========================
 
+[![Build Status](https://travis-ci.org/splitice/buyvm-stallion-api.svg?branch=master)](https://travis-ci.org/splitice/buyvm-stallion-api)
+
 This is a PHP5 wrapper to easily integrate  with BuyVM's Stallion control panel API.
 
 Developed for use at http://www.x4b.net
@@ -48,4 +50,11 @@ Here are some examples on how to do basic operations.
 $client = new ApiClient('KEY', 'HASH');
 $api = new BuyVMApi($client);
 $api->rdns('1.1.1.1', 'rdns-ptr');
+```
+
+### Get VPS information
+```
+$client = new ApiClient('KEY', 'HASH');
+$api = new BuyVMApi($client);
+$memory = $api->get('mem');
 ```
