@@ -34,4 +34,14 @@ class ApiMethodsTest extends PHPUnit_Framework_TestCase {
         $api = new BuyVMApi($client);
         $api->get('bw');
     }
+
+    function testHardDrive(){
+        //Assert
+        $client = $this->getMock(self::API_CLIENT);
+        $client->expects($this->once())->method('execute_info')->with($this->equalTo(array('hdd')))->will($this->returnValue(array('bw'=>'total,used,free,percentage')));
+
+        //Do
+        $api = new BuyVMApi($client);
+        $api->get('hdd');
+    }
 } 
