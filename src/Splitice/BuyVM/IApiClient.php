@@ -14,5 +14,20 @@ namespace Splitice\BuyVM;
  */
 interface IApiClient
 {
-    function execute($action, $data);
+    /**
+     * Execute an action request
+     *
+     * @param string $action
+     * @param array $data
+     * @return array
+     */
+    function execute_action($action, $data = array());
+
+    /**
+     * Execute an information request
+     *
+     * @param array $fields
+     * @return array
+     */
+    function execute_info($fields);
 }

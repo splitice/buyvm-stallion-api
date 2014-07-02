@@ -32,16 +32,12 @@ class ApiClient implements IApiClient
         curl_close($this->ch);
     }
 
-    function execute($action, $data){
-        //Create & set post data
-        $post = array(
-            'key' => $this->key,
-            'hash' => $this->hash,
-            'action' => $action
-        );
-        foreach($data as $k=>$v){
-            $post[$k] = $v;
-        }
+    private function execute($post){
+        //Set authentication
+        $post['key'] = $this->key;
+        $post['hash'] = $this->hash;
+
+        //set post data
         curl_setopt($this->ch, CURLOPT_POSTFIELDS, $post);
 
         //Execute request
@@ -61,5 +57,18 @@ class ApiClient implements IApiClient
         }else{
             throw new ApiTransportException($code);
         }
+    }
+
+    function execute_action($action, $data = array()){
+        $data['action'] = $action;
+        return $this->execute($data);
+    }
+
+    function execute_info($fields){
+        $post = array();
+        foreach($fields as $f){
+            $post[$f] = 'true';
+        }
+        return $this->execute($post);
     }
 }
