@@ -1,6 +1,10 @@
 <?php
 namespace Splitice\BuyVM;
 
+/**
+ * Stallion 'SolusVM like' API client
+ * @package Splitice\BuyVM
+ */
 class ApiClient implements IApiClient
 {
     const URL = "https://manage.buyvm.net/api/client/command.php";

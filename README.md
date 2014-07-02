@@ -1,7 +1,11 @@
 BuyVM Stallion API (PHP)
 ========================
 
-This is a PHP5 wrapper to easily integrate  with BuyVM's Stallion control panel API
+This is a PHP5 wrapper to easily integrate  with BuyVM's Stallion control panel API.
+
+Developed for use at http://www.x4b.net
+
+Pull requests, features and patches welcome.
 
 ## Requirements
 You need PHP 5.3.2+ compiled with the cURL extension.
@@ -39,4 +43,9 @@ You can find out more on how to install Composer, configure autoloading, and oth
 
 Here are some examples on how to do basic operations.
 
-### Soon
+### Setting Reverse DNS
+```
+$client = new ApiClient('KEY', 'HASH');
+$api = new BuyVMApi($client);
+$api->rdns('1.1.1.1', 'rdns-ptr');
+```
