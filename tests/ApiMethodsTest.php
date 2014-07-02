@@ -1,13 +1,6 @@
 <?php
 use Splitice\BuyVM\BuyVMApi;
 
-/**
- * Created by PhpStorm.
- * User: splitice
- * Date: 6/4/14
- * Time: 2:24 PM
- */
-
 class ApiMethodsTest extends PHPUnit_Framework_TestCase {
     const API_CLIENT = '\\Splitice\\BuyVM\\IBuyVMApiClient';
 
@@ -38,10 +31,40 @@ class ApiMethodsTest extends PHPUnit_Framework_TestCase {
     function testHardDrive(){
         //Assert
         $client = $this->getMock(self::API_CLIENT);
-        $client->expects($this->once())->method('execute_info')->with($this->equalTo(array('hdd')))->will($this->returnValue(array('bw'=>'total,used,free,percentage')));
+        $client->expects($this->once())->method('execute_info')->with($this->equalTo(array('hdd')))->will($this->returnValue(array('hdd'=>'total,used,free,percentage')));
 
         //Do
         $api = new BuyVMApi($client);
         $api->get('hdd');
+    }
+
+    function testMemory(){
+        //Assert
+        $client = $this->getMock(self::API_CLIENT);
+        $client->expects($this->once())->method('execute_info')->with($this->equalTo(array('mem')))->will($this->returnValue(array('mem'=>'total,used,free,percentage')));
+
+        //Do
+        $api = new BuyVMApi($client);
+        $api->get('mem');
+    }
+
+    function testIpAddresses(){
+        //Assert
+        $client = $this->getMock(self::API_CLIENT);
+        $client->expects($this->once())->method('execute_info')->with($this->equalTo(array('ipaddr')))->will($this->returnValue(array('ipaddr'=>'1.2.3.4,2.3.4.5,4.5.6.7,7.8.9.10')));
+
+        //Do
+        $api = new BuyVMApi($client);
+        $api->get('ipaddr');
+    }
+
+    function testStatus(){
+        //Assert
+        $client = $this->getMock(self::API_CLIENT);
+        $client->expects($this->once())->method('execute_info')->with($this->equalTo(array('status')))->will($this->returnValue(array('statusmsg'=>'online')));
+
+        //Do
+        $api = new BuyVMApi($client);
+        $api->get('status');
     }
 } 

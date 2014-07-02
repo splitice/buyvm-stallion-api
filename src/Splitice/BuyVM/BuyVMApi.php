@@ -80,7 +80,7 @@ class BuyVMApi {
             default:
                 throw new ApiException('Unknown information field: '.$field);
         }
-        $return = $this->execute_info(array($field));
+        $return = $this->info(array($field));
 
         if(isset($return[$return_field])){
             return $return[$return_field];
