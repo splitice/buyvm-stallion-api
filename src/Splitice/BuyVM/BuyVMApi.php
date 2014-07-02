@@ -8,11 +8,11 @@ namespace Splitice\BuyVM;
  */
 class BuyVMApi {
     /**
-     * @var IApiClient
+     * @var IBuyVMApiClient
      */
     private $client;
 
-    function __construct(IApiClient $client){
+    function __construct(IBuyVMApiClient $client){
         $this->client = $client;
     }
 
