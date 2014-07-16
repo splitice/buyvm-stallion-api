@@ -13,7 +13,7 @@ You need PHP 5.3.2+ compiled with the cURL extension.
 ## Install BuyVM Stallion API (PHP)
 ### Installing via Composer
 
-The recommended way to install OVH SDK is through [Composer](http://getcomposer.org).
+The recommended way to install the Stallion SDK is through [Composer](http://getcomposer.org).
 
 1. Add ``splitice/buyvm-stallion-api`` as a dependency in your project's ``composer.json`` file:
 
